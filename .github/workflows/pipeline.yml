@@ -1,0 +1,43 @@
+name: Vana V19 Content Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_url:
+        description: 'URL do Vídeo no YouTube'
+        required: true
+      video_ref:
+        description: 'Referência Única (ex: VID_001)'
+        required: true
+
+jobs:
+  process-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar Dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Executar Esteira Vāṇī-Śuddha
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # Credenciais para o Handshake com a Hostinger
+          WP_URL: "https://beta.vanamadhuryamdaily.com/wp-json/wp/v2"
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          # O script processa o vídeo e envia via REST API
+          # usando os campos ACF registrados no plugin [cite: 198, 209]
+          python vana_vani_suddha.py --url "${{ github.event.inputs.video_url }}" --ref "${{ github.event.inputs.video_ref }}"
+
+      - name: Notificação de Sucesso
+        run: echo "🚀 Aula processada e enviada para o Acervo Beta!"

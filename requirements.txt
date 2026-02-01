@@ -1,0 +1,12 @@
+# IA e Processamento de Linguagem
+google-generativeai
+anthropic
+
+# Downloads e Manipulação de Mídia
+yt-dlp
+ffmpeg-python
+
+# Integração e Utilitários
+requests
+python-dotenv
+typing-extensions
