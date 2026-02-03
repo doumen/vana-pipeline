@@ -105,7 +105,8 @@ if response.status_code == 201:
     print(f"✅ SUCESSO! Aula postada. ID: {response.json().get('id')}")
 else:
     print(f"❌ ERRO na postagem: {response.status_code} - {response.text}")
-
+    sys.exit(1) # ISSO AQUI fará a esteira ficar VERMELHA no GitHub
+        
 # No final do seu arquivo vana_vani_suddha.py
 
 import requests
