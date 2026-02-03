@@ -80,13 +80,10 @@ if __name__ == "__main__":
         "title": "A Essência de Bhakti-rasāmṛta-sindhu",
         "content": final_text_pt,
         "status": "publish",
-        "meta": {
-            "aula_local": metadata["aula_local"],
-            "aula_tempo": metadata["aula_tempo"],
-            "translation_group_id": "VID_nLrj2bDhZIU" # ID do YouTube [cite: 199]
-        }
+        "aula_local": metadata["aula_local"], # Fora do bloco 'meta'
+        "aula_tempo": metadata["aula_tempo"],
+        "translation_group_id": "VID_nLrj2bDhZIU"
     }
-
     # No GHA, aqui dispararíamos o POST para beta.vanamadhuryamdaily.com
     print("\n--- TEXTO GERADO (VANA V19 READY) ---")
     print(final_text_pt)
