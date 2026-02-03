@@ -105,3 +105,29 @@ if response.status_code == 201:
     print(f"✅ SUCESSO! Aula postada. ID: {response.json().get('id')}")
 else:
     print(f"❌ ERRO na postagem: {response.status_code} - {response.text}")
+
+# No final do seu arquivo vana_vani_suddha.py
+
+import requests
+
+# Dados para o Handshake
+# Tente 'vana_aula' ou apenas 'aulas', dependendo do rest_base do seu plugin
+wp_url = "https://beta.vanamadhuryamdaily.com/wp-json/wp/v2/vana_aula"
+user = os.getenv("WP_USER")
+password = os.getenv("WP_APP_PASSWORD")
+
+print(f"\n📡 Tentando postagem em: {wp_url}")
+
+try:
+    response = requests.post(wp_url, json=payload, auth=(user, password))
+    
+    if response.status_code == 201:
+        print(f"✅ SUCESSO! Aula postada. ID: {response.json().get('id')}")
+    elif response.status_code == 404:
+        print("❌ ERRO 404: O WordPress não encontrou a rota 'vana_aula'.")
+        print("👉 AÇÃO: Vá em Configurações > Links Permanentes no WP e clique em SALVAR.")
+    else:
+        print(f"❌ ERRO na postagem: {response.status_code}")
+        print(response.text)
+except Exception as e:
+    print(f"💥 Falha crítica na conexão: {e}")
