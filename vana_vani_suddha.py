@@ -91,3 +91,17 @@ if __name__ == "__main__":
     print(final_text_pt)
     print("\n--- METADADOS PARA INGESTÃO ---")
     print(json.dumps(payload, indent=2))
+    import requests
+
+# Dados para o Handshake (Vindo do GitHub Secrets)
+wp_url = "https://beta.vanamadhuryamdaily.com/wp-json/wp/v2/vana_aula"
+user = os.getenv("WP_USER")
+password = os.getenv("WP_APP_PASSWORD") # Aquela senha de 16 dígitos gerada no perfil
+
+# Realizando o envio real
+response = requests.post(wp_url, json=payload, auth=(user, password))
+
+if response.status_code == 201:
+    print(f"✅ SUCESSO! Aula postada. ID: {response.json().get('id')}")
+else:
+    print(f"❌ ERRO na postagem: {response.status_code} - {response.text}")
