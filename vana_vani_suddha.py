@@ -10,7 +10,7 @@ genai.configure(api_key=GEMINI_API_KEY)
 
 class VanaVaniSuddha:
     def __init__(self):
-        self.model = genai.GenerativeModel('gemini-1.5-pro')
+        self.model = genai.GenerativeModel('gemini-2.5-flash')
 
     def get_forensic_prompt(self, raw_text: str) -> str:
         """
