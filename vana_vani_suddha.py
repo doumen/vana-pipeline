@@ -112,7 +112,7 @@ import requests
 
 # Dados para o Handshake
 # Tente 'vana_aula' ou apenas 'aulas', dependendo do rest_base do seu plugin
-wp_url = "https://beta.vanamadhuryamdaily.com/wp-json/wp/v2/vana_aula"
+wp_url = "https://beta.vanamadhuryamdaily.com/wp-json/wp/v2/aulas"
 user = os.getenv("WP_USER")
 password = os.getenv("WP_APP_PASSWORD")
 
